@@ -21,6 +21,7 @@ import org.jetbrains.kotlin.fir.expressions.FirNamedArgumentExpression
 import org.jetbrains.kotlin.fir.render
 import org.jetbrains.kotlin.fir.resolve.calls.varargElementType
 import org.jetbrains.kotlin.fir.resolve.firSymbolProvider
+import org.jetbrains.kotlin.fir.resolve.fullyExpandedType
 import org.jetbrains.kotlin.fir.resolve.inference.isSuspendFunctionType
 import org.jetbrains.kotlin.fir.resolve.toSymbol
 import org.jetbrains.kotlin.fir.symbols.StandardClassIds
@@ -401,8 +402,7 @@ class FirElementSerializer private constructor(
             builder.setUnderlyingType(local.typeProto(underlyingType))
         }
 
-        // TODO: difference between underlying type & expanded type
-        val expandedType = underlyingType
+        val expandedType = underlyingType.fullyExpandedType(session)
         if (useTypeTable()) {
             builder.expandedTypeId = local.typeId(expandedType)
         } else {
