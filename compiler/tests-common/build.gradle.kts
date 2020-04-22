@@ -5,6 +5,8 @@ plugins {
 }
 
 dependencies {
+    compileOnly(intellijCoreDep()) { includeJars("intellij-core") }
+
     testCompile(project(":kotlin-scripting-compiler"))
     testCompile(project(":core:descriptors"))
     testCompile(project(":core:descriptors.jvm"))
@@ -91,7 +93,7 @@ dependencies {
 }
 
 sourceSets {
-    "main" { }
+    "main" { projectDefault() }
     "test" { projectDefault() }
 }
 

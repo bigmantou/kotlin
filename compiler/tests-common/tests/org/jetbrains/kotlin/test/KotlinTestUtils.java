@@ -24,7 +24,6 @@ import com.intellij.psi.impl.PsiFileFactoryImpl;
 import com.intellij.rt.execution.junit.FileComparisonFailure;
 import com.intellij.testFramework.LightVirtualFile;
 import com.intellij.testFramework.TestDataFile;
-import com.intellij.util.PathUtil;
 import com.intellij.util.containers.ContainerUtil;
 import junit.framework.TestCase;
 import kotlin.Unit;
@@ -172,23 +171,6 @@ public class KotlinTestUtils {
                     "), please point it to the 'android.jar' file location");
         }
         return androidJarFile;
-    }
-
-    @NotNull
-    public static File findAndroidSdk() {
-        String androidSdkProp = System.getProperty("android.sdk");
-        File androidSdkDir = androidSdkProp == null ? null : new File(androidSdkProp);
-        if (androidSdkDir == null || !androidSdkDir.isDirectory()) {
-            throw new RuntimeException(
-                    "Unable to get a valid path from 'android.sdk' property (" +
-                    androidSdkProp +
-                    "), please point it to the android SDK location");
-        }
-        return androidSdkDir;
-    }
-
-    public static String getAndroidSdkSystemIndependentPath() {
-        return PathUtil.toSystemIndependentName(findAndroidSdk().getAbsolutePath());
     }
 
     public static File getAnnotationsJar() {

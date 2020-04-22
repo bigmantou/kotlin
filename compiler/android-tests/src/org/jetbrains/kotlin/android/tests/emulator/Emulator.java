@@ -24,6 +24,7 @@ import org.jetbrains.kotlin.android.tests.OutputUtils;
 import org.jetbrains.kotlin.android.tests.PathManager;
 import org.jetbrains.kotlin.android.tests.run.RunResult;
 import org.jetbrains.kotlin.android.tests.run.RunUtils;
+import org.jetbrains.kotlin.test.AndroidSdkUtils;
 import org.junit.Assert;
 
 import java.util.List;
@@ -49,14 +50,14 @@ public class Emulator {
     private GeneralCommandLine getCreateCommand() {
         GeneralCommandLine commandLine = new GeneralCommandLine();
         String androidCmdName = SystemInfo.isWindows ? "avdmanager.bat" : "avdmanager";
-        commandLine.setExePath(pathManager.getToolsFolderInAndroidSdk() + "/bin/" + androidCmdName);
+        commandLine.setExePath(AndroidSdkUtils.getToolsFolderInAndroidSdk() + "/bin/" + androidCmdName);
         commandLine.addParameter("create");
         commandLine.addParameter("avd");
         commandLine.addParameter("--force");
         commandLine.addParameter("-n");
         commandLine.addParameter(AVD_NAME);
         commandLine.addParameter("-p");
-        commandLine.addParameter(pathManager.getAndroidAvdRoot());
+        commandLine.addParameter(AndroidSdkUtils.getAndroidAvdRoot());
         commandLine.addParameter("-k");
         if (platform == X86) {
             commandLine.addParameter("system-images;android-19;default;x86");
@@ -68,7 +69,7 @@ public class Emulator {
 
     private GeneralCommandLine getStartCommand() {
         GeneralCommandLine commandLine = new GeneralCommandLine();
-        commandLine.setExePath(pathManager.getEmulatorFolderInAndroidSdk() + "/" + "emulator");
+        commandLine.setExePath(AndroidSdkUtils.getEmulatorFolderInAndroidSdk() + "/" + "emulator");
         commandLine.addParameter("-avd");
         commandLine.addParameter(AVD_NAME);
         commandLine.addParameter("-no-audio");
@@ -108,7 +109,7 @@ public class Emulator {
 
     private GeneralCommandLine createAdbCommand() {
         GeneralCommandLine commandLine = new GeneralCommandLine();
-        commandLine.setExePath(pathManager.getPlatformToolsFolderInAndroidSdk() + "/" + "adb");
+        commandLine.setExePath(AndroidSdkUtils.getPlatformToolsFolderInAndroidSdk() + "/" + "adb");
         return commandLine;
     }
 
@@ -259,7 +260,7 @@ public class Emulator {
                     stopDdmsProcess();
                     isDdmsStopped = true;
                 }
-                commandLineForStoppingEmulators.setExePath(pathManager.getPlatformToolsFolderInAndroidSdk() + "/adb");
+                commandLineForStoppingEmulators.setExePath(AndroidSdkUtils.getPlatformToolsFolderInAndroidSdk() + "/adb");
                 commandLineForStoppingEmulators.addParameter("-s");
                 commandLineForStoppingEmulators.addParameter(matcher.group());
                 commandLineForStoppingEmulators.addParameter("emu");

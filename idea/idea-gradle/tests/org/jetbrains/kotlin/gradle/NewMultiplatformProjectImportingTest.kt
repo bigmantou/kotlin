@@ -14,6 +14,7 @@ import org.jetbrains.kotlin.idea.codeInsight.gradle.MultiplePluginVersionGradleI
 import org.jetbrains.kotlin.platform.CommonPlatforms
 import org.jetbrains.kotlin.platform.js.JsPlatforms
 import org.jetbrains.kotlin.platform.jvm.JvmPlatforms
+import org.jetbrains.kotlin.test.AndroidSdkUtils
 import org.jetbrains.kotlin.test.KotlinTestUtils
 import org.jetbrains.plugins.gradle.tooling.annotation.PluginTargetVersions
 import org.junit.After
@@ -259,7 +260,7 @@ class NewMultiplatformProjectImportingTest : MultiplePluginVersionGradleImportin
         configureByFiles()
         createProjectSubFile(
             "local.properties",
-            "sdk.dir=/${KotlinTestUtils.getAndroidSdkSystemIndependentPath()}"
+            "sdk.dir=/${AndroidSdkUtils.getAndroidSdkSystemIndependentPath()}"
         )
         importProject()
 
@@ -617,7 +618,7 @@ class NewMultiplatformProjectImportingTest : MultiplePluginVersionGradleImportin
         configureByFiles()
         createProjectSubFile(
             "local.properties",
-            "sdk.dir=/${KotlinTestUtils.getAndroidSdkSystemIndependentPath()}"
+            "sdk.dir=/${AndroidSdkUtils.getAndroidSdkSystemIndependentPath()}"
         )
         importProject(true)
         checkProjectStructure(exhaustiveModuleList = false, exhaustiveDependencyList = false, exhaustiveSourceSourceRootList = false) {

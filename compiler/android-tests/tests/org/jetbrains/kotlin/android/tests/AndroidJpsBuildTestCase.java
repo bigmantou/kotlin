@@ -17,6 +17,7 @@
 package org.jetbrains.kotlin.android.tests;
 
 import org.jetbrains.kotlin.jps.build.BaseKotlinJpsBuildTestCase;
+import org.jetbrains.kotlin.test.AndroidSdkUtils;
 import org.junit.Ignore;
 
 import java.io.File;
@@ -56,7 +57,7 @@ public class AndroidJpsBuildTestCase extends BaseKotlinJpsBuildTestCase {
     }
 
     private void initProject() {
-        addJdk(SDK_NAME, AndroidRunner.getPathManager().getPlatformFolderInAndroidSdk() + "/android.jar");
+        addJdk(SDK_NAME, AndroidSdkUtils.getPlatformFolderInAndroidSdk() + "/android.jar");
         loadProject(workDir.getAbsolutePath() + File.separator + PROJECT_NAME + ".ipr");
     }
 }

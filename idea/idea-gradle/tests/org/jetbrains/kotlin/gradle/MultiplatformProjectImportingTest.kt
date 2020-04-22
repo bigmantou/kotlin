@@ -27,6 +27,7 @@ import org.jetbrains.kotlin.idea.codeInsight.gradle.MultiplePluginVersionGradleI
 import org.jetbrains.kotlin.idea.codeInsight.gradle.facetSettings
 import org.jetbrains.kotlin.idea.facet.KotlinFacet
 import org.jetbrains.kotlin.idea.util.rootManager
+import org.jetbrains.kotlin.test.AndroidSdkUtils
 import org.jetbrains.kotlin.test.KotlinTestUtils
 import org.junit.Test
 
@@ -224,7 +225,7 @@ class MultiplatformProjectImportingTest : MultiplePluginVersionGradleImportingTe
 
         createProjectSubFile(
             "local.properties", """
-            sdk.dir=/${KotlinTestUtils.getAndroidSdkSystemIndependentPath()}
+            sdk.dir=/${AndroidSdkUtils.getAndroidSdkSystemIndependentPath()}
         """
         )
 
@@ -254,7 +255,7 @@ class MultiplatformProjectImportingTest : MultiplePluginVersionGradleImportingTe
 
         createProjectSubFile(
             "local.properties", """
-            sdk.dir=/${KotlinTestUtils.getAndroidSdkSystemIndependentPath()}
+            sdk.dir=/${AndroidSdkUtils.getAndroidSdkSystemIndependentPath()}
         """
         )
 
@@ -312,7 +313,7 @@ class MultiplatformProjectImportingTest : MultiplePluginVersionGradleImportingTe
         configureByFiles()
         createProjectSubFile(
             "local.properties", """
-            sdk.dir=/${KotlinTestUtils.getAndroidSdkSystemIndependentPath()}
+            sdk.dir=/${AndroidSdkUtils.getAndroidSdkSystemIndependentPath()}
         """
         )
 

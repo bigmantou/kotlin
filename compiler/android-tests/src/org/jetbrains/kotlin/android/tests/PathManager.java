@@ -16,10 +16,6 @@
 
 package org.jetbrains.kotlin.android.tests;
 
-import org.jetbrains.kotlin.test.KotlinTestUtils;
-
-import java.io.File;
-
 public class PathManager {
 
     private final String tmpFolder;
@@ -28,28 +24,6 @@ public class PathManager {
     public PathManager(String rootFolder, String tmpFolder) {
         this.tmpFolder = tmpFolder;
         this.rootFolder = rootFolder;
-    }
-
-    public String getPlatformFolderInAndroidSdk() {
-        return getAndroidSdkRoot() + "/platforms";
-    }
-
-    public String getAndroidAvdRoot() {
-        String androidEmulatorRoot = getAndroidSdkRoot() + "/compiler_box_test_avd";
-        new File(androidEmulatorRoot).mkdirs();
-        return androidEmulatorRoot;
-    }
-
-    public String getPlatformToolsFolderInAndroidSdk() {
-        return getAndroidSdkRoot() + "/platform-tools";
-    }
-
-    public String getToolsFolderInAndroidSdk() {
-        return getAndroidSdkRoot() + "/tools";
-    }
-
-    public String getEmulatorFolderInAndroidSdk() {
-        return getAndroidSdkRoot() + "/emulator";
     }
 
     public String getOutputForCompiledFiles(String flavor) {
@@ -66,10 +40,6 @@ public class PathManager {
 
     public String getAndroidTmpFolder() {
         return tmpFolder;
-    }
-
-    public String getAndroidSdkRoot() {
-        return KotlinTestUtils.getAndroidSdkSystemIndependentPath();
     }
 
     public String getAndroidModuleRoot() {
